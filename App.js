@@ -1,21 +1,20 @@
-import React from 'react';
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Image } from 'react-native';
-const PlaceholderImage = require("./assets/images/background-image.png");
-import ImageViewer from './compenents/ImageView';
-import ListMovie from "./Pages/ListMovie";
+import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer } from '@react-navigation/native'
+import MovieDetail from './Pages/MovieDetail'
+import MovieDisplay from './Pages/MovieDisplay'
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-        <ListMovie></ListMovie>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer >
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name='Movie Explorer' component={MovieDisplay}/>
+        <Stack.Screen name='Movie Detail' component= {MovieDetail } />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+export default App
