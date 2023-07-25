@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e2eea8b1-eff0-419b-b430-d94c3991832d"
+      }
+    },
+    "owner": "huy.do"
   }
 }

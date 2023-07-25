@@ -1,10 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View, Image } from 'react-native';
+const PlaceholderImage = require("./assets/images/background-image.png");
+import ImageViewer from './compenents/ImageView';
+import ListMovie from "./Pages/ListMovie";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+        <ListMovie></ListMovie>
       <StatusBar style="auto" />
     </View>
   );
@@ -13,8 +17,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
