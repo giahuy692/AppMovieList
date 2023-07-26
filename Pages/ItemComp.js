@@ -19,7 +19,7 @@ const { width, height } = Dimensions.get("screen");
 const ItemComp = () => {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
-  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [loading, setloading] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [refreshControl, setRefreshControl] = useState(false);
   const [page, setPage] = useState(1);
@@ -73,44 +73,51 @@ const ItemComp = () => {
   };
 
   return (
-      <FlatList
-        data={data}
-        horizontal={false}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.container}
-            onPress={() =>
-              navigation.navigate("Movie Detail", {
-                imdbID: item.imdbID,
-              })
-            }
-          >
-            <View style={styles.img}>
-              <Image
-                source={{ uri: item["Poster"] }}
-                style={{
-                  width: (width * 22) / 100,
-                  height: (height * 16) / 100,
-                }}
-              />
-            </View>
-            <View style={styles.title}>
-              <Text>{item["Title"]}</Text>
-            </View>
-            <View style={styles.icon}>
-              <AntDesign name="right" size={20} color="black" />
-            </View>
-          </TouchableOpacity>
-        )}
-        refreshControl={
-          <RefreshControl refreshing={refreshControl} onRefresh={onRefresh} color={['red']}
-          />
-        }
-        keyExtractor={(item, index) => item['imdbID'] + index}
-        ListFooterComponent={renderFooter}
-        onEndReached={onLoadMore}
-        onEndReachedThreshold={0}
-      />
+      <View>
+        {isLoadingMore && <ActivityIndicator size="large" style={styles.loader} color={['red']}/>}
+        <FlatList
+          data={data}
+          horizontal={false}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.container}
+              onPress={() =>
+                navigation.navigate("Movie Detail", {
+                  imdbID: item.imdbID,
+                })
+              }
+            >
+              <View style={styles.img}>
+                <Image
+                  source={{ uri: item["Poster"] }}
+                  style={{
+                    width: (width * 22) / 100,
+                    height: (height * 16) / 100,
+                  }}
+                />
+              </View>
+              <View style={styles.title}>
+                <Text>{item["Title"]}</Text>
+                <View style={styles.subTitle}>
+                  <Text style={styles.sub}>Year: <Text style={styles.subColor}>{item["Year"]}</Text></Text>
+                  <Text style={styles.sub}>Type: <Text style={styles.subColor}>{item["Type"]}</Text></Text>
+                </View>
+              </View>
+              <View style={styles.icon}>
+                <AntDesign name="right" size={20} color="black" />
+              </View>
+            </TouchableOpacity>
+          )}
+          refreshControl={
+            <RefreshControl refreshing={refreshControl} onRefresh={onRefresh} color={['red']}
+            />
+          }
+          keyExtractor={(item, index) => item['imdbID'] + index}
+          ListFooterComponent={renderFooter}
+          onEndReached={onLoadMore}
+          onEndReachedThreshold={0}
+        />
+      </View>
   );
 };
 
@@ -123,6 +130,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 10,
     flexDirection: "row",
+    elevation: 5,
+    backgroundColor: "white",
+    marginBottom: 10,
   },
   img: {
     width: (width * 25) / 100,
@@ -152,8 +162,22 @@ const styles = StyleSheet.create({
     left:0,
     bottom:0,
     right:0,
-    zIndex:99999    
+    zIndex:99999,    
+    color:'red',
+
   },
   containerFlat:{
+  },
+  subTitle:{
+    marginTop:10,
+    flexDirection: "row",
+    columnGap:10,
+    paddingVertical: 20,
+  },
+  sub:{
+    color: 'gray',
+  },
+  subColor:{
+    fontWeight: "bold",
   }
 });

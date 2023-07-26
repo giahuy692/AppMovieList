@@ -23,7 +23,8 @@ export default MovieDisplay
 
 const styles = StyleSheet.create({
   container:{
-    flex: 1
+    flex: 1,
+    backgroundColor:"lightgray"
   },
   flatList:{
     flex:1,
