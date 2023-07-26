@@ -7,7 +7,6 @@ import Grit from './Pages/Grit'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
 
-
 const Stack = createStackNavigator();
 
 const App = () => {
