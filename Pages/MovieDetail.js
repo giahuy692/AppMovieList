@@ -13,7 +13,7 @@ const MovieDetail = ({route}) => {
   const [data, setData] = useState([]);
 
   const getDataAPI = async () => {
-      let res = await axios.get(`https://www.omdbapi.com/?i=${imdbID}&apikey=9a4fc8c1`);
+      let res = await axios.get(`https://www.omdbapi.com/?i=${imdbID}&apikey=23613bd5`);
       setData(res.data);
       
   }
