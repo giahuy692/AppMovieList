@@ -12,16 +12,17 @@ import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import User from '../MockData/User';
 
 
 const { width, height } = Dimensions.get('screen');
 
-let arr = [
-    { email: 'w@w.com', password: '123' },
-    { email: 'w123@w.com', password: '123' },
-    { email: 'w251@w.com', password: '123' },
-    { email: 'w112@w.com', password: '123' },
-]
+// let arr = [
+//     { email: 'w@w.com', password: '123' },
+//     { email: 'w123@w.com', password: '123' },
+//     { email: 'w251@w.com', password: '123' },
+//     { email: 'w112@w.com', password: '123' },
+// ]
 
 
 
@@ -36,6 +37,7 @@ const Login = () => {
 
     const navigation = useNavigation();
 
+//================================Xử lý input=============================
     const handleLoginPress = () => {
         if (!email) {
             setIsEmailValid(true); // Ẩn thông báo lỗi khi không nhập gì trong input email
@@ -78,13 +80,14 @@ const Login = () => {
         navigation.navigate('Register')
     }
 
-    const handleRegisterPress = () =>{
+    const handleRegisterPress = () => {
         navigation.navigate('Register')
     }
 
+//=========================Logic đăng nhập==============================
     const Login = (email, password) => {
-        for (let i = 0; i < arr.length; i++) {
-            const element = arr[i];
+        for (let i = 0; i < User.length; i++) {
+            const element = User[i];
             if (email == element.email && password == element.password) {
                 setIsPasswordEmpty(false);
                 setIsPasswordCorrect(true);
@@ -106,7 +109,7 @@ const Login = () => {
 
                 <Image
                     style={styles.logo}
-                    source={require('../assets/images/imagelogin.png')}
+                    source={require('../assets/images/Logo.png')}
                 />
                 <Text style={styles.textLogo}>
                     Movie Login
@@ -168,9 +171,9 @@ const Login = () => {
 
             <View style={styles.containerRegister}>
                 <Text stye={styles.titleRegister}>Don't have an account?</Text>
-                <TouchableOpacity 
-                style={styles.btnRegister}
-                onPress={handleRegisterPress}
+                <TouchableOpacity
+                    style={styles.btnRegister}
+                    onPress={handleRegisterPress}
                 >
                     <Text style={styles.textRegister}>
                         Create One.
@@ -196,8 +199,8 @@ const styles = StyleSheet.create({
     },
 
     logo: {
-        height: 80,
-        width: 80,
+        height: 120,
+        width: 120,
         marginBottom: 20
     },
     textLogo: {
@@ -252,7 +255,7 @@ const styles = StyleSheet.create({
         paddingLeft: 50,
         // marginLeft: 50,
         fontWeight: '700',
-        color: 'rgb(38, 132, 255)',
+        color: 'rgb(243, 80, 34)',
 
     },
     loginBtn: {
@@ -263,14 +266,14 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         marginTop: 40,
         marginLeft: 50,
-        backgroundColor: "rgb(204, 226, 255)",
+        backgroundColor: "rgb(246, 144, 115)",
 
     },
     textLogin: {
         fontWeight: '800'
     },
 
-    containerRegister:{
+    containerRegister: {
         display: 'flex',
         flexDirection: 'row',
         backgroundColor: 'rgb(250, 250, 250)',
@@ -283,14 +286,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    titleRegister:{
+    titleRegister: {
 
     },
-    btnRegister:{
-        
+    btnRegister: {
+
     },
-    textRegister:{
-        color: 'rgb(38, 132, 255)',
+    textRegister: {
+        color: 'rgb(243, 80, 34)',
     },
 
 })
