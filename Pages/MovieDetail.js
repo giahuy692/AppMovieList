@@ -34,11 +34,14 @@ const MovieDetail = ({ route }) => {
 
   const arrActor = [
     { name: "Adam West", img: require("../assets/images/adamWest.jpg") },
-    { name: "Adam West", img: require("../assets/images/michaelkeaton.jpg") },
-    { name: "Adam West", img: require("../assets/images/valkilmer.jpg") },
-    { name: "Adam West", img: require("../assets/images/kevinconroy.jpg") },
     {
-      name: "Adam West",
+      name: "Michael Keaton",
+      img: require("../assets/images/michaelkeaton.jpg"),
+    },
+    { name: "Val Kilmer", img: require("../assets/images/valkilmer.jpg") },
+    { name: "Kevin Conroy", img: require("../assets/images/kevinconroy.jpg") },
+    {
+      name: "Neil Patrick Harris",
       img: require("../assets/images/NeilPatrickHarris.jpg"),
     },
   ];
@@ -56,67 +59,78 @@ const MovieDetail = ({ route }) => {
               color={["red"]}
             />
           )}
-          <View>
-            <View
-              style={{
-                width: width,
-                height: (height * 10) / 100,
-                backgroundColor: "#F35120",
-                justifyContent: "flex-end",
-                alignItems: "center",
-                padding: 10,
-              }}
-            >
-              <Text
-                style={{ fontSize: 18, fontWeight: "bold", color: "white" }}
+          <View style={{ position: "relative" }}>
+            <View style={{ alignItems:"center" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  width: width,
+                  height: 80,
+                  backgroundColor: "#F35120",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  paddingHorizontal: 10,
+                }}
               >
-                Movie Detail
-              </Text>
-            </View>
-            <TouchableOpacity
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                position: "absolute",
-                top: 48,
-                left: 10,
-              }}
-              onPress={() => navigate.goBack()}
-            >
-              <AntDesign name="left" size={24} color="white" />
-              <Text style={{ fontSize: 15, color: "white" }}>Back</Text>
-            </TouchableOpacity>
-            <View style={styles.main}>
-              <View style={styles.imgView}>
-                <Image source={{ uri: data.Poster }} style={styles.img} />
-                <View style={styles.scoreView}>
-                  <Text style={{ fontSize: 18 }}>{data.Metascore}</Text>
-                  <Text style={{ fontSize: 18 }}>{data.imdbRating}</Text>
+                <TouchableOpacity
+                  style={{ flexDirection: "row" }}
+                  onPress={() => navigate.goBack()}
+                >
+                  <AntDesign name="left" size={24} color="white" />
+                  <Text style={{ fontSize: 15, color: "white" }}>Back</Text>
+                </TouchableOpacity>
+                <View style={{}}>
+                  <Text
+                    style={{ fontSize: 18, fontWeight: "bold", color: "white" }}
+                  >
+                    Movie Detail
+                  </Text>
+                </View>
+                <View>
+                  <Text>           </Text>
                 </View>
               </View>
-              <View style={styles.titleView}>
-                <Text style={styles.title}>{data.Title}</Text>
-                <Text style={styles.detail}>{data.Genre}</Text>
-                <Text style={styles.detail}>{data.Released}</Text>
-                <Text style={styles.detail}>{data.Plot}</Text>
-                <Text style={styles.detail}>{data.Director}</Text>
-                <Text style={styles.detail}>{data.Writer}</Text>
-                <Text style={styles.detail}>{data.Actors}</Text>
-              </View>
             </View>
-            <View style={styles.ActorContainer}>
-              {arrActor.map((actor, index) => {
-                return (
-                  <View key={index}>
-                    <Image style={styles.imgActor} source={actor.img} />
-                    <Text>{actor.name}</Text>
+
+            <ScrollView style={{height:height - 155}}>
+              <View style={styles.main}>
+                <View style={styles.imgView}>
+                  <Image source={{ uri: data.Poster }} style={styles.img} />
+                  <View style={styles.scoreView}>
+                    <Text style={{ fontSize: 18 }}>{data.Metascore}</Text>
+                    <Text style={{ fontSize: 18 }}>{data.imdbRating}</Text>
                   </View>
-                );
-              })}
-            </View>
-            
-            <TouchableOpacity style={styles.BtnOrder}  onPress={() => navigate.navigate("Ticket Booking")}>
-              <Text style={styles.textBtnOrdet}>Buy Ticket</Text>
+                </View>
+                <View style={styles.titleView}>
+                  <Text style={styles.title}>{data.Title}</Text>
+                  <Text style={styles.detail}>{data.Genre}</Text>
+                  <Text style={styles.detail}>{data.Released}</Text>
+                  <Text style={styles.detail}>{data.Plot}</Text>
+                  <Text style={styles.detail}>{data.Director}</Text>
+                  <Text style={styles.detail}>{data.Writer}</Text>
+                  <Text style={styles.detail}>{data.Actors}</Text>
+                </View>
+              </View>
+                <Text style={{marginTop:10,paddingTop:10,paddingHorizontal:10, fontSize:16, fontWeight:'700', color:"gray",borderTopWidth:0.5}}>Actor</Text>
+              <View style={[styles.ActorContainer,{flexWrap:"wrap", }]}>
+                {arrActor.map((actor, index) => {
+                  return (
+                    <View key={index} style={{flexWrap:"wrap", marginVertical:10}}>
+                      <Image style={styles.imgActor} source={actor.img} />
+                      <Text style={{textAlign:"center",paddingHorizontal:5,flexWrap:"wrap"}} numberOfLines={2}>{actor.name}</Text>
+                    </View>
+                  );
+                })}
+              </View>
+            </ScrollView>
+            <TouchableOpacity
+              style={styles.BtnOrder}
+              // onPress={() => navigate.navigate("Showtimes", {
+              //   imdbID: data['imdbID'],
+              // })}
+              onPress={()=>navigate.navigate("Showtimes")}
+            >
+              <Text style={styles.textBtnOrdet}>Get Reservation</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -130,7 +144,7 @@ export default MovieDetail;
 const styles = StyleSheet.create({
   imgView: {
     width: (width * 30) / 100,
-    height: (height * 90) / 100,
+    // height: (height * 90) / 100,
     alignItems: "center",
   },
   img: {
@@ -139,22 +153,25 @@ const styles = StyleSheet.create({
   },
   titleView: {
     width: (width * 70) / 100,
-    height: (height * 90) / 100,
+    // height: (height * 90) / 100,
     paddingRight: (width * 2.5) / 100,
+  
   },
   main: {
-    height: (height * 90) / 100 - 400,
     flexDirection: "row",
     paddingTop: 50,
+    // height: height - 50 - 310,
   },
 
   title: {
     fontSize: 30,
   },
   scoreView: {
-    alignItems: "flex-start",
-    width: (width * 25) / 100,
-    alignItems: "flex-start",
+    alignContent: "center",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    columnGap: 10,
+    marginTop: 10,
   },
   detail: {
     paddingVertical: 5,
@@ -184,15 +201,14 @@ const styles = StyleSheet.create({
   },
   ActorContainer: {
     width: width,
-    height:(height * 90) / 100 - 492 , // Đảm bảo đủ lớn để hiển thị toàn bộ nội dung
     flexDirection: "row",
     marginVertical: 10,
-    padding: 10,
+    justifyContent:"center",
   },
   imgActor: {
-    width: 100,
+    width: (width - 10*10) / 3,
     height: 150,
     backgroundColor: "red",
-    marginRight: 10,
+    marginHorizontal:10,
   },
 });

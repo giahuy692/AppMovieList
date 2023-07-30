@@ -33,13 +33,14 @@ const { width, height } = Dimensions.get('screen');
 
 //============================ UI list showtimes =================================
 
-const ShowtimeItem = ({ nameTheater, date, lich, selectedTimes, handleSelectTime }) => {
+const ShowtimeItem = ({imdbID, nameTheater, date, lich, selectedTimes, handleSelectTime }) => {
     const selectedTimeItem = selectedTimes;
-
+    // console.log(selectedTimes)
     return (
         <View style={styles.showtimeItem}>
             <Text style={styles.nameTheater}>{nameTheater}</Text>
             <Text style={styles.date}>{date}</Text>
+            {/* <Text style={styles.date}>{imdbID}</Text> */}
             {lich.map((item, index) => (
                 <View key={index}>
                     <Text style={styles.category}>{item.category}</Text>
@@ -58,10 +59,10 @@ const ShowtimeItem = ({ nameTheater, date, lich, selectedTimes, handleSelectTime
                                     onPress={() => {
                                         if (isSelected) {
                                             // Nếu click lần nữa vào time đã chọn thì bỏ chọn nó
-                                            handleSelectTime(nameTheater, date, null);
+                                            handleSelectTime(imdbID, nameTheater, date, null);
                                         } else {
                                             // Ngược lại, chọn time
-                                            handleSelectTime(nameTheater, date, time);
+                                            handleSelectTime(imdbID, nameTheater, date, time);
                                         }
                                     }}
                                 >
@@ -89,8 +90,8 @@ const Showtimes = () => {
 
     const navigation = useNavigation();
 
-    const handleSelectTime = (theater, date, time) => {
-        // console.log(theater, time)
+    const handleSelectTime = (imdbID, theater, date, time) => {
+        // console.log(imdbID)
         setSelectedTimes((prevSelectedTimes) => {
             // console.log('button ' , prevSelectedTimes)
             // Tạo một bản sao mới của selectedTimes để tránh thay đổi trực tiếp vào state
@@ -104,6 +105,8 @@ const Showtimes = () => {
                 newSelectedTimes['cinema'] = theater;
                 newSelectedTimes['time'] = time;
                 newSelectedTimes['date'] = date;
+                newSelectedTimes['imdbID'] = imdbID;
+
 
                 
                 // console.log('else ', newSelectedTimes)
@@ -116,7 +119,7 @@ const Showtimes = () => {
         if (Object.keys(selectedTimes).length > 0) {
             // setSelectedCinemaInfo(selectedTimes);
             // console.log('Select ',  selectedTimes)
-            navigation.navigate('DetailCinema', {
+            navigation.navigate('TicketBooking', {
                 cinemaInfo: selectedTimes,
              
                 
@@ -152,6 +155,7 @@ const Showtimes = () => {
                         key={index}
                         nameTheater={item.nameTheater}
                         date={item.date}
+                        imdbID={item.imdbID}
                         lich={item.lich}
                         selectedTimes={selectedTimes}
                         handleSelectTime={handleSelectTime}
@@ -161,7 +165,10 @@ const Showtimes = () => {
             </View>
 
             <View style={styles.menuFooter}>
-                <TouchableOpacity style={styles.btnCancel}>
+                <TouchableOpacity 
+                style={styles.btnCancel}
+                onPress={()=>navigation.goBack()}
+                >
                     <Text style={styles.textBtnCancel}>
                         Cancel
                     </Text>
