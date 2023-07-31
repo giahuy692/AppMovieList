@@ -252,7 +252,9 @@ const styles = StyleSheet.create({
         flex: 1,
         marginLeft: 20,
         alignItems: 'center',
-        backgroundColor: 'rgb(247, 246, 248)'
+        backgroundColor: 'rgb(247, 246, 248)',
+        paddingLeft: 10,
+        borderRadius: 10,
 
     },
     textTitleInput: {

@@ -125,9 +125,10 @@ const MovieDetail = ({ route }) => {
             </ScrollView>
             <TouchableOpacity
               style={styles.BtnOrder}
-              onPress={() => navigate.navigate("TicketBooking", {
-                imdbID: data['imdbID'],
-              })}
+              // onPress={() => navigate.navigate("Showtimes", {
+              //   imdbID: data['imdbID'],
+              // })}
+              onPress={()=>navigate.navigate("Showtimes")}
             >
               <Text style={styles.textBtnOrdet}>Get Reservation</Text>
             </TouchableOpacity>

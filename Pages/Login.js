@@ -220,7 +220,8 @@ const styles = StyleSheet.create({
 
         width: "80%",
         height: 60,
-        marginTop: 10
+        marginTop: 10,
+
 
     },
     textInput: {
@@ -228,7 +229,9 @@ const styles = StyleSheet.create({
         flex: 1,
         marginLeft: 20,
         alignItems: 'center',
-        backgroundColor: 'rgb(247, 246, 248)'
+        backgroundColor: 'rgb(247, 246, 248)',
+        paddingLeft: 10,
+        borderRadius: 10,
 
     },
     textTitleInput: {

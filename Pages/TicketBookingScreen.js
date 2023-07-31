@@ -14,8 +14,9 @@ import { ScrollView } from "react-native-gesture-handler";
 import axios from "axios";
 const { width, height } = Dimensions.get("screen");
 
+
 const TicketBookingScreen = ({ route }) => {
-  const { imdbID } = route.params;
+  const { imdbID, cinema, date, time } = route.params.cinemaInfo;
   const navigate = useNavigation();
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [priceTicket, setPriceTicket] = useState("Price Ticket");
@@ -25,6 +26,7 @@ const TicketBookingScreen = ({ route }) => {
   const SeatItem = ({ seat, isSelected, onPress, price }) => {
     const seatStyle = isSelected ? styles.selectedSeat : styles.seat;
     const seatTextStyle = isSelected ? styles.textWhite : styles.textBlack;
+
 
     return (
       <TouchableOpacity style={seatStyle} onPress={() => onPress(seat, price)}>
@@ -125,7 +127,7 @@ const TicketBookingScreen = ({ route }) => {
           <Text></Text>
         </View>
       </View>
-      <ScrollView style={{ width:width,height: height - 230, position: "relative" }}>
+      <ScrollView style={{ width: width, height: height - 230, position: "relative" }}>
         {isLoadingMore && (
           <ActivityIndicator
             size="large"
@@ -147,7 +149,7 @@ const TicketBookingScreen = ({ route }) => {
               source={{ uri: MovieDetail["Poster"] }}
               style={styles.imgMovie}
             />
-            <View style={{ margin:10 }}>
+            <View style={{ margin: 10 }}>
               <Text style={styles.title}>{MovieDetail['Title']}</Text>
               <Text style={styles.detail}>{MovieDetail.Genre}</Text>
               <Text style={styles.detail}>{MovieDetail.Released}</Text>
@@ -155,10 +157,17 @@ const TicketBookingScreen = ({ route }) => {
               <Text style={styles.detail}>{MovieDetail.Director}</Text>
               <Text style={styles.detail}>{MovieDetail.Writer}</Text>
               <Text style={styles.detail}>{MovieDetail.Actors}</Text>
+              <Text style={styles.textTicket}>Infor Ticket</Text>
+              <Text style={styles.detail}>Cinema: {cinema}</Text>
+              <Text style={styles.detail}>Movie day: {date}</Text>
+              <Text style={styles.detail}>Cinema interest: {time}</Text>
+            </View>
+            <View style={styles.cinemaInfo}>
+              
             </View>
           </View>
           <View>
-            <Text style={{margin:10, fontSize:16, fontWeight:700, color:"gray"}}>Select Seats</Text>
+            <Text style={{ margin: 10, fontSize: 16, fontWeight: 700, color: "gray" }}>Select Seats</Text>
             <SeatSelection
               selectedSeats={selectedSeats}
               onSeatPress={handleSeatPress}
@@ -167,7 +176,7 @@ const TicketBookingScreen = ({ route }) => {
         </View>
       </ScrollView>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <TouchableOpacity style={styles.cancel}  onPress={() => navigate.goBack()}>
+        <TouchableOpacity style={styles.cancel} onPress={() => navigate.goBack()}>
           <Text style={styles.priceText}>Cancel</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.price}>
@@ -183,7 +192,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent:"center"
+    justifyContent: "center"
   },
   main: {
     flex: 1,
@@ -270,6 +279,21 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderTopColor: "gray",
     borderTopWidth: 1,
+  },
+  cinemaInfo: {
+    // width: width,
+    margin: 10,
+
+  },
+  textTicket: {
+    fontSize: 18,
+    marginTop: 20,
+    paddingVertical: 5,
+    borderTopWidth: 1, 
+  },
+  textInfo: {
+    width: '100%',
+    borderBottomWidth: 1
   },
 });
 
