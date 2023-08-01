@@ -8,6 +8,8 @@ import Register from './Pages/Register'
 import Showtimes from './Pages/Showtimes'
 import DetailCinema from './Pages/DetailCinema'
 import TicketBookingScreen from './Pages/TicketBookingScreen'
+import Datepicker from './Pages/datepicker'
+Datepicker
 
 
 const Stack = createStackNavigator();
@@ -15,7 +17,7 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer >
-      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Movie Explorer'>
+      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Showtimes'>
         <Stack.Screen name='Movie Explorer' component={MovieDisplay}/>
         <Stack.Screen name='Movie Detail' component= {MovieDetail } />
         <Stack.Screen name='Showtimes' component= {Showtimes} />
@@ -23,6 +25,7 @@ const App = () => {
         <Stack.Screen name='Register' component= {Register} />
         <Stack.Screen name='DetailCinema' component= {DetailCinema} />
         <Stack.Screen name='TicketBooking' component= {TicketBookingScreen} />
+        <Stack.Screen name='Datepicker' component= {Datepicker}/>
       </Stack.Navigator>
     </NavigationContainer>
   )
