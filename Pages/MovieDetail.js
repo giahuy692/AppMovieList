@@ -92,7 +92,7 @@ const MovieDetail = ({ route }) => {
               </View>
             </View>
 
-            <ScrollView style={{height:height - 192}}>
+            <ScrollView style={{height:height - 154}}>
               <View style={styles.main}>
                 <View style={styles.imgView}>
                   <Image source={{ uri: data.Poster }} style={styles.img} />

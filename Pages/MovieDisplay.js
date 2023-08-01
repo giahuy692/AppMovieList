@@ -7,10 +7,10 @@ const { width, height } = Dimensions.get('screen');
 const MovieDisplay = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        <View style={{width: width, height: height *10/100, backgroundColor: '#F35120', justifyContent: 'flex-end', alignItems:'center', padding: 10}}>
-          <Text style={{fontSize: 18, fontWeight: 'bold', color: 'white'}}>Movie Explorer</Text>
-        </View>
+      <View style={styles.headers}>
+        <Text style={{ fontSize: 18, color: "white", fontWeight: "bold" }}>
+          Movie Explorer
+        </Text>
       </View>
         <View style={styles.flatList}>
           <ItemComp />
@@ -28,5 +28,13 @@ const styles = StyleSheet.create({
   },
   flatList:{
     flex:1,
+  },
+  headers: {
+    width: width,
+    height: 80,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F35120",
+    flexDirection: "row",
   },
 });
