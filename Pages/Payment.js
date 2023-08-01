@@ -13,25 +13,52 @@ import { useNavigation } from "@react-navigation/native";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import Checkbox from "expo-checkbox";
 const { width, height } = Dimensions.get("screen");
-import * as SMS from "expo-sms";
 
 export default function Payment({ route }) {
   const data = route.params;
   const navigate = useNavigation();
-  const isAvailable = SMS.isAvailableAsync();
   const [isOnSite, setOnSite] = useState(false);
   const [fullname, setFullname] = useState("");
   const [phone, setPhone] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [isFullnameTouched, setIsFullnameTouched] = useState(false);
+  const [isPhoneFormatValid, setIsPhoneFormatValid] = useState(false);
 
-  const handlePayment = () => {
-    // Perform payment processing here using a payment gateway.
-    // For this example, let's just show an alert.
-    Alert.alert(
-      "Payment Successful!",
-      "Your movie ticket has been booked successfully."
-    );
-    console.log();
+  const handlePayment = async () => {
+    if (phone !== "" && fullname !== "" && isOnSite) {
+      const seatsString = data.seats.join(", ");
+      Alert.alert(
+        "Booking Confirmation:",
+        [
+          `Movie Name: ${data.movieName}`,
+          `Time: ${data.time}`,
+          `Date: ${data.date}`,
+          `Seats: ${seatsString}`,
+          `Theater: ${data.theater}`,
+          `Movie Format: ${data.movieFormat}`,
+          "\nThank you for booking with us!",
+        ].join("\n")
+      );
+      navigate.navigate("Movie Explorer");
+    } else {
+      Alert.alert(
+        "Notication",
+        "Please fill in all the required information and select a payment method."
+      );
+    }
   };
+
+  const validatePhone = () => {
+    // Check if fullname and phone fields are filled
+    const isPhoneValid = /^84\d{9}$/.test(phone); // Validate phone format as 84 + 9 digits
+
+    setIsPhoneFormatValid(isPhoneValid);
+  };
+
+  const handleFullnameBlur = () => {
+    setIsFullnameTouched(true);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headers}>
@@ -71,7 +98,13 @@ export default function Payment({ route }) {
             </View>
             <View style={styles.seatsContainer}>
               <Text style={styles.seatsTitle}>Seats</Text>
-              <View style={{flexWrap:"wrap", flexDirection:"row", columnGap:10,  }}>
+              <View
+                style={{
+                  flexWrap: "wrap",
+                  flexDirection: "row",
+                  columnGap: 10,
+                }}
+              >
                 {data.seats.map((v) => (
                   <Text style={styles.seats}>{v}</Text>
                 ))}
@@ -81,7 +114,7 @@ export default function Payment({ route }) {
           <View style={styles.cinemaWrapper}>
             <View style={styles.cinema}>
               <Text style={styles.cinemaTitle}>Cinema</Text>
-              <Text style={styles.cinemaName}>BHD Star Le Van Viet</Text>
+              <Text style={styles.cinemaName}>{data.cinema}</Text>
             </View>
             <View style={styles.room}>
               <Text style={styles.roomTitle}>Movie Theater</Text>
@@ -98,21 +131,31 @@ export default function Payment({ route }) {
         <View style={{ padding: 10 }}>
           <Text style={styles.label}>Fullname: </Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, isPhoneFormatValid && { borderColor: "red" }]}
             value={fullname}
             onChangeText={setFullname}
+            onBlur={handleFullnameBlur}
             keyboardType="default"
             placeholder="Enter your name"
           />
+          {isFullnameTouched && fullname === "" && (
+            <Text style={styles.textError}>Please enter your name.</Text>
+          )}
 
           <Text style={styles.label}>Phone</Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, isPhoneFormatValid && { borderColor: "red" }]}
             value={phone}
             onChangeText={setPhone}
             keyboardType="phone-pad"
             placeholder="84+ _____ _____ _____"
+            onEndEditing={validatePhone}
           />
+          {isPhoneFormatValid && (
+            <Text style={{ color: "red", marginTop: 5 }}>
+              Please enter a valid phone number in the format 84 + 9 digits.
+            </Text>
+          )}
 
           <View style={{ marginTop: 10 }}>
             <View style={styles.section}>
@@ -131,7 +174,15 @@ export default function Payment({ route }) {
           </View>
         </View>
       </ScrollView>
-      <TouchableOpacity style={styles.button} onPress={handlePayment}>
+
+      <TouchableOpacity
+        style={[
+          styles.button,
+          { backgroundColor: isFormValid ? "#F35120" : "gray" },
+        ]}
+        onPress={handlePayment}
+        disabled={fullname == "" || isOnSite == false || phone == ""}
+      >
         <Text style={styles.buttonText}>Pay Now</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -151,7 +202,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F35120",
     flexDirection: "row",
     paddingHorizontal: 20,
-    
   },
   title: {
     padding: 10,
@@ -159,7 +209,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 20,
     fontWeight: "bold",
-    color:"gray"
+    color: "gray",
   },
   main: {
     borderWidth: 1,
@@ -181,7 +231,7 @@ const styles = StyleSheet.create({
     color: "gray",
     fontSize: 16,
     marginBottom: 5,
-    flex:1
+    flex: 1,
   },
   time: {
     color: "red",
@@ -195,7 +245,7 @@ const styles = StyleSheet.create({
   seatsContainer: {
     width: width / 2,
     marginBottom: 15,
-    flex:1
+    flex: 1,
   },
   seatsTitle: {
     color: "gray",
@@ -239,6 +289,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     marginBottom: 10,
+    color: "gray",
   },
   input: {
     borderColor: "gray",
@@ -253,7 +304,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 15,
-    borderRadius: 5,
     marginTop: 20,
   },
   buttonText: {
@@ -270,5 +320,8 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     margin: 8,
+  },
+  textError: {
+    color: "red",
   },
 });
