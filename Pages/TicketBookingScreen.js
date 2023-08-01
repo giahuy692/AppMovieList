@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Dimensions } from "react-native";
+import { ActivityIndicator, Alert, Dimensions } from "react-native";
 import {
   View,
   Text,
@@ -8,12 +8,11 @@ import {
   Image,
   SafeAreaView,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import axios from "axios";
 const { width, height } = Dimensions.get("screen");
-
 
 const TicketBookingScreen = ({ route }) => {
   const { imdbID, cinema, date, time } = route.params.cinemaInfo;
@@ -27,7 +26,6 @@ const TicketBookingScreen = ({ route }) => {
     const seatStyle = isSelected ? styles.selectedSeat : styles.seat;
     const seatTextStyle = isSelected ? styles.textWhite : styles.textBlack;
 
-
     return (
       <TouchableOpacity style={seatStyle} onPress={() => onPress(seat, price)}>
         <Text style={seatTextStyle}>{seat}</Text>
@@ -38,15 +36,15 @@ const TicketBookingScreen = ({ route }) => {
   const SeatSelection = ({ selectedSeats, onSeatPress }) => {
     const seats = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"];
     const seatPrices = {
-      A1: 10,
-      A2: 15,
-      A3: 12,
-      B1: 11,
-      B2: 13,
-      B3: 16,
-      C1: 14,
-      C2: 10,
-      C3: 9,
+      A1: 70,
+      A2: 75,
+      A3: 82,
+      B1: 81,
+      B2: 83,
+      B3: 106,
+      C1: 54,
+      C2: 74,
+      C3: 79,
     };
 
     const handleSeatPress = (seat) => {
@@ -98,6 +96,23 @@ const TicketBookingScreen = ({ route }) => {
     );
   };
 
+  const data = {
+    imdbID: imdbID, 
+    movieName:MovieDetail["Title"],
+    cinema: cinema, 
+    date: date, 
+    time: time,
+    seats: selectedSeats
+  }
+
+  const handleGoPayment = () => {
+    if (selectedSeats.length !== 0) {
+      navigate.navigate("Payment", data);
+    } else {
+      Alert.alert("Notification", "Please select your seat.");
+    }
+  };
+
   const getDataAPI = async () => {
     let res = await axios.get(
       `https://www.omdbapi.com/?i=${imdbID}&apikey=23613bd5`
@@ -127,7 +142,9 @@ const TicketBookingScreen = ({ route }) => {
           <Text></Text>
         </View>
       </View>
-      <ScrollView style={{ width: width, height: height - 230, position: "relative" }}>
+      <ScrollView
+        style={{ width: width, height: height - 230, position: "relative" }}
+      >
         {isLoadingMore && (
           <ActivityIndicator
             size="large"
@@ -150,24 +167,48 @@ const TicketBookingScreen = ({ route }) => {
               style={styles.imgMovie}
             />
             <View style={{ margin: 10 }}>
-              <Text style={styles.title}>{MovieDetail['Title']}</Text>
+              <Text style={styles.title}>{MovieDetail["Title"]}</Text>
               <Text style={styles.detail}>{MovieDetail.Genre}</Text>
               <Text style={styles.detail}>{MovieDetail.Released}</Text>
               <Text style={styles.detail}>{MovieDetail.Plot}</Text>
               <Text style={styles.detail}>{MovieDetail.Director}</Text>
               <Text style={styles.detail}>{MovieDetail.Writer}</Text>
               <Text style={styles.detail}>{MovieDetail.Actors}</Text>
-              <Text style={styles.textTicket}>Infor Ticket</Text>
-              <Text style={styles.detail}>Cinema: {cinema}</Text>
-              <Text style={styles.detail}>Movie day: {date}</Text>
-              <Text style={styles.detail}>Cinema interest: {time}</Text>
-            </View>
-            <View style={styles.cinemaInfo}>
-              
+              <Text style={styles.textTicket}>
+                <Ionicons
+                  name="reorder-three-outline"
+                  size={20}
+                  color="#F35120"
+                />{" "}
+                Film information
+              </Text>
+              <Text style={[styles.detail, { paddingLeft: 35 }]}>
+                <Ionicons name="eye-outline" size={20} color="gray" /> Cinema:{" "}
+                {cinema}
+              </Text>
+              <Text style={[styles.detail, { paddingLeft: 35 }]}>
+                <Ionicons name="time-outline" size={20} color="gray" /> Movie
+                day: {date}
+              </Text>
+              <Text style={[styles.detail, { paddingLeft: 35 }]}>
+                <Ionicons name="calendar-outline" size={20} color="gray" />{" "}
+                Cinema interest: {time}
+              </Text>
             </View>
           </View>
-          <View>
-            <Text style={{ margin: 10, fontSize: 16, fontWeight: 700, color: "gray" }}>Select Seats</Text>
+          <View style={{ margin: 10 }}>
+            <Text
+              style={{
+                margin: 10,
+                fontSize: 16,
+                fontWeight: 700,
+                color: "gray",
+                borderTopWidth: 1,
+                paddingTop: 10,
+              }}
+            >
+              Select Seats
+            </Text>
             <SeatSelection
               selectedSeats={selectedSeats}
               onSeatPress={handleSeatPress}
@@ -176,11 +217,14 @@ const TicketBookingScreen = ({ route }) => {
         </View>
       </ScrollView>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <TouchableOpacity style={styles.cancel} onPress={() => navigate.goBack()}>
-          <Text style={styles.priceText}>Cancel</Text>
+        <TouchableOpacity
+          style={styles.cancel}
+          onPress={() => navigate.goBack()}
+        >
+          <Text style={styles.btnContent}>Cancel</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.price}>
-          {/* <Text style={styles.priceText}>Go Cart</Text> */}
+        <TouchableOpacity style={styles.price} onPress={handleGoPayment}>
+          <Text style={styles.btnContent}>Go Payment</Text>
           <Text style={styles.priceText}>{priceTicket}</Text>
         </TouchableOpacity>
       </View>
@@ -192,7 +236,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   main: {
     flex: 1,
@@ -235,11 +279,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     textAlign: "center",
   },
-  priceText: {
+  btnContent: {
     textAlign: "center",
     color: "white",
     fontWeight: "700",
     fontSize: 20,
+    marginBottom: 5,
+  },
+  priceText: {
+    color: "white",
+    textAlign: "center",
   },
   headers: {
     width: width,
@@ -278,22 +327,21 @@ const styles = StyleSheet.create({
   detail: {
     paddingVertical: 5,
     borderTopColor: "gray",
-    borderTopWidth: 1,
   },
   cinemaInfo: {
     // width: width,
     margin: 10,
-
   },
   textTicket: {
     fontSize: 18,
     marginTop: 20,
     paddingVertical: 5,
-    borderTopWidth: 1, 
+    borderTopWidth: 1,
+    paddingTop: 10,
   },
   textInfo: {
-    width: '100%',
-    borderBottomWidth: 1
+    width: "100%",
+    borderBottomWidth: 1,
   },
 });
 

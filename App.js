@@ -6,8 +6,8 @@ import MovieDisplay from './Pages/MovieDisplay'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
 import Showtimes from './Pages/Showtimes'
-import DetailCinema from './Pages/DetailCinema'
 import TicketBookingScreen from './Pages/TicketBookingScreen'
+import Payment from './Pages/Payment'
 
 
 const Stack = createStackNavigator();
@@ -21,8 +21,8 @@ const App = () => {
         <Stack.Screen name='Showtimes' component= {Showtimes} />
         <Stack.Screen name='Login' component= {Login}/>
         <Stack.Screen name='Register' component= {Register} />
-        <Stack.Screen name='DetailCinema' component= {DetailCinema} />
         <Stack.Screen name='TicketBooking' component= {TicketBookingScreen} />
+        <Stack.Screen name='Payment' component= {Payment} />
       </Stack.Navigator>
     </NavigationContainer>
   )
