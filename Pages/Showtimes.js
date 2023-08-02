@@ -85,7 +85,7 @@ const { width, height } = Dimensions.get('screen');
 
 //============================ UI list showtimes =================================
 
-const ShowtimeItem = ({ imdbID, nameTheater, date, lich, selectedTimes, handleSelectTime }) => {
+const ShowtimeItem = ({ imdbID, nameTheater, date, lich, selectedTimes, handleSelectTime, room, category }) => {
     const selectedTimeItem = selectedTimes;
     // console.log(selectedTimes)
     return (
@@ -111,10 +111,10 @@ const ShowtimeItem = ({ imdbID, nameTheater, date, lich, selectedTimes, handleSe
                                     onPress={() => {
                                         if (isSelected) {
                                             // Nếu click lần nữa vào time đã chọn thì bỏ chọn nó
-                                            handleSelectTime(imdbID, nameTheater, date, null);
+                                            handleSelectTime(imdbID, nameTheater, date, null, room, item.category);
                                         } else {
                                             // Ngược lại, chọn time
-                                            handleSelectTime(imdbID, nameTheater, date, time);
+                                            handleSelectTime(imdbID, nameTheater, date, time, room, item.category);
                                         }
                                     }}
                                 >
@@ -149,7 +149,7 @@ const Showtimes = () => {
 
     const navigation = useNavigation();
 
-    const handleSelectTime = (imdbID, theater, date, time) => {
+    const handleSelectTime = (imdbID, theater, date, time, room, category) => {
         setSelectedTimes((prevSelectedTimes) => {
             const newSelectedTimes = { ...prevSelectedTimes };
 
@@ -159,12 +159,17 @@ const Showtimes = () => {
                 delete newSelectedTimes['time'];
                 delete newSelectedTimes['date'];
                 delete newSelectedTimes['imdbID'];
+                delete newSelectedTimes['room'];
+                delete newSelectedTimes['category'];
             } else {
                 // Ngược lại, set giá trị mới
                 newSelectedTimes['cinema'] = theater;
                 newSelectedTimes['time'] = time;
                 newSelectedTimes['date'] = date;
                 newSelectedTimes['imdbID'] = imdbID;
+                newSelectedTimes['room'] = room;
+                newSelectedTimes['category'] = category;
+                console.log(newSelectedTimes)
             }
             return newSelectedTimes;
         });
@@ -196,6 +201,8 @@ const Showtimes = () => {
         showMode('date');
     };
 
+    const showtimesForSelectedDate = Showtimesdb.filter((item) => item.date === selectedDate.toLocaleDateString('vi-VN'));
+
     return (
         <View style={styles.constainer}>
             <View style={styles.header}>
@@ -207,7 +214,7 @@ const Showtimes = () => {
                 <View style={styles.navigateShowtimes}>
                     <View style={styles.containerDate}>
                         <Text style={styles.calander}>
-                             {selectedDate.toLocaleDateString('vi-VN')}
+                            {selectedDate.toLocaleDateString('vi-VN')}
                         </Text>
                     </View>
                     <TouchableOpacity style={styles.btnDatePicker} onPress={showDatepicker}>
@@ -226,17 +233,25 @@ const Showtimes = () => {
                 </View>
 
                 <View style={styles.containerListCinema}>
-                    {Showtimesdb.filter((item) => item.date === selectedDate.toLocaleDateString('vi-VN')).map((item, index) => (
-                        <ShowtimeItem
-                            key={index}
-                            nameTheater={item.nameTheater}
-                            date={item.date}
-                            imdbID={item.imdbID}
-                            lich={item.lich}
-                            selectedTimes={selectedTimes}
-                            handleSelectTime={handleSelectTime}
-                        />
-                    ))}
+                    {showtimesForSelectedDate.length > 0 ? (
+                        showtimesForSelectedDate.map((item, index) => (
+                            <ShowtimeItem
+                                key={index}
+                                nameTheater={item.nameTheater}
+                                date={item.date}
+                                imdbID={item.imdbID}
+                                room={item.room}
+                                category={item.category}
+                                lich={item.lich}
+                                selectedTimes={selectedTimes}
+                                handleSelectTime={handleSelectTime}
+                            />
+                        ))
+                    ) : (
+                        <Text style={styles.noShowtimesText}>
+                            There are no showtimes for this movie today.
+                        </Text>
+                    )}
                 </View>
             </ScrollView>
 
@@ -300,7 +315,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 10,
     },
-    containerDate:{
+    containerDate: {
         backgroundColor: 'rgb(246, 144, 115)',
         width: '80%',
         height: 32,
@@ -380,6 +395,14 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginRight: 10,
         marginBottom: 10,
+    },
+
+    noShowtimesText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'red',
+        textAlign: 'center',
+        marginTop: 20,
     },
 
     //========================End style list clander========================
