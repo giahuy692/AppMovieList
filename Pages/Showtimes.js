@@ -123,6 +123,8 @@ const ShowtimeItem = ({
   lich,
   selectedTimes,
   handleSelectTime,
+  room,
+  category,
 }) => {
   const selectedTimeItem = selectedTimes;
   // console.log(selectedTimes)
@@ -153,10 +155,24 @@ const ShowtimeItem = ({
                   onPress={() => {
                     if (isSelected) {
                       // Nếu click lần nữa vào time đã chọn thì bỏ chọn nó
-                      handleSelectTime(imdbID, nameTheater, date, null);
+                      handleSelectTime(
+                        imdbID,
+                        nameTheater,
+                        date,
+                        null,
+                        room,
+                        item.category
+                      );
                     } else {
                       // Ngược lại, chọn time
-                      handleSelectTime(imdbID, nameTheater, date, time);
+                      handleSelectTime(
+                        imdbID,
+                        nameTheater,
+                        date,
+                        time,
+                        room,
+                        item.category
+                      );
                     }
                   }}
                 >
@@ -190,7 +206,7 @@ const Showtimes = () => {
 
   const navigation = useNavigation();
 
-  const handleSelectTime = (imdbID, theater, date, time) => {
+  const handleSelectTime = (imdbID, theater, date, time, room, category) => {
     setSelectedTimes((prevSelectedTimes) => {
       const newSelectedTimes = { ...prevSelectedTimes };
 
@@ -200,12 +216,17 @@ const Showtimes = () => {
         delete newSelectedTimes["time"];
         delete newSelectedTimes["date"];
         delete newSelectedTimes["imdbID"];
+        delete newSelectedTimes["room"];
+        delete newSelectedTimes["category"];
       } else {
         // Ngược lại, set giá trị mới
         newSelectedTimes["cinema"] = theater;
         newSelectedTimes["time"] = time;
         newSelectedTimes["date"] = date;
         newSelectedTimes["imdbID"] = imdbID;
+        newSelectedTimes["room"] = room;
+        newSelectedTimes["category"] = category;
+        console.log(newSelectedTimes);
       }
       return newSelectedTimes;
     });
@@ -224,7 +245,6 @@ const Showtimes = () => {
       alert("Vui lòng chọn thời gian.");
     }
   };
-
   // Xử lý chọn lịch
   const handleTimeChange = (event, selected) => {
     const currentDate = selected;
@@ -238,6 +258,9 @@ const Showtimes = () => {
   const showDatepicker = () => {
     showMode("date");
   };
+  const showtimesForSelectedDate = Showtimesdb.filter(
+    (item) => item.date === selectedDate.toLocaleDateString("vi-VN")
+  );
 
   return (
     <View style={styles.constainer}>
@@ -274,29 +297,36 @@ const Showtimes = () => {
         </View>
 
         <View style={styles.containerListCinema}>
-          {Showtimesdb.filter(
-            (item) => item.date === selectedDate.toLocaleDateString("vi-VN")
-          ).length > 0 ? (
-            Showtimesdb.filter(
-              (item) => item.date === selectedDate.toLocaleDateString("vi-VN")
-            ).map((item, index) => (
+          {showtimesForSelectedDate.length > 0 ? (
+            showtimesForSelectedDate.map((item, index) => (
               <ShowtimeItem
                 key={index}
                 nameTheater={item.nameTheater}
                 date={item.date}
                 imdbID={item.imdbID}
+                room={item.room}
+                category={item.category}
                 lich={item.lich}
                 selectedTimes={selectedTimes}
                 handleSelectTime={handleSelectTime}
               />
             ))
           ) : (
-            <View style={{flex:1, justifyContent:"center",alignItems:"center"}}>
-                <Image
-                    style={styles.logo}
-                    source={require('../assets/images/Logo.png')}
-                />
-                <Text style={{textAlign:"center", color:"gray"}}>Oops! Looks like there are no showtimes scheduled for the selected date.</Text>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                style={styles.logo}
+                source={require("../assets/images/Logo.png")}
+              />
+              <Text style={{ textAlign: "center", color: "gray" }}>
+                Oops! Looks like there are no showtimes scheduled for the
+                selected date.
+              </Text>
             </View>
           )}
         </View>
@@ -429,6 +459,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
+  noShowtimesText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "red",
+    textAlign: "center",
+    marginTop: 20,
+  },
+
   //========================End style list clander========================
   menuFooter: {
     backgroundColor: "rgb(246, 144, 115)",
@@ -462,8 +500,8 @@ const styles = StyleSheet.create({
   logo: {
     height: 120,
     width: 120,
-    marginBottom: 20
-},
+    marginBottom: 20,
+  },
 });
 
 export default Showtimes;
