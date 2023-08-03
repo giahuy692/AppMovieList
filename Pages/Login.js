@@ -13,6 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import User from '../MockData/User';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const { width, height } = Dimensions.get('screen');
@@ -33,10 +34,16 @@ const Login = ({ route }) => {
     const [isEmailEmpty, setIsEmailEmpty] = useState(false);
     const [isPasswordEmpty, setIsPasswordEmpty] = useState(false);
     const [isPasswordCorrect, setIsPasswordCorrect] = useState(true);
+    const [data, setData] = useState({ email: '', password: '' });
+
 
     const navigation = useNavigation();
 
-//================================Xử lý input=============================
+    useEffect(() => {
+        getData();
+        
+    }, []);
+    //================================Xử lý input=============================
     const handleLoginPress = () => {
         if (!email) {
             setIsEmailValid(true); // Ẩn thông báo lỗi khi không nhập gì trong input email
@@ -83,16 +90,33 @@ const Login = ({ route }) => {
         navigation.navigate('Register')
     }
 
-//=========================Logic đăng nhập==============================
+    const getData = async () => {
+        try {
+            const jsonData = await AsyncStorage.getItem('data_key');
+            if (jsonData !== null) {
+                const data = JSON.parse(jsonData);
+                setData(data)
+                console.log('Dữ liệu từ AsyncStorage:', data);
+                // Tiếp tục xử lý dữ liệu ở đây
+            } else {
+                console.log('Không tìm thấy dữ liệu trong AsyncStorage.');
+            }
+        } catch (error) {
+            console.log('Lỗi khi lấy dữ liệu từ AsyncStorage:', error);
+        }
+    };
+
+    //=========================Logic đăng nhập==============================
     const Login = (email, password) => {
         for (let i = 0; i < User.length; i++) {
             const element = User[i];
-            if (email == element.email && password == element.password) {
+            if (email == element.email && password == element.password || email === data.email && password === data.password) {
                 setIsPasswordEmpty(false);
                 setIsPasswordCorrect(true);
                 navigation.navigate('Movie Explorer')
                 console.log("Login success")
             }
+            
             else {
                 setIsPasswordCorrect(false);
             }

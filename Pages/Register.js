@@ -13,6 +13,8 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import User from '../MockData/User';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 // let arr = [
@@ -34,13 +36,13 @@ const Register = () => {
     const [isPasswordCorrect, setIsPasswordCorrect] = useState(true);
     const [rePassword, setRePassword] = useState('');
     const [isPasswordMatch, setIsPasswordMatch] = useState(true);
-    const [userList, setUserList] = useState([]);
+    // const [userList, setUserList] = useState([]);
 
     const navigation = useNavigation();
 
     //================================Xử lý input=============================
     const handleRegisterPress = () => {
-        console.log(email, password)
+        // console.log(email, password)
         if (!email) {
             setIsEmailValid(true); // Ẩn thông báo lỗi khi không nhập gì trong input email
             setIsEmailEmpty(true);
@@ -61,35 +63,60 @@ const Register = () => {
             return;
         }
         //  Xác nhận sự tồn tại của email
+        // if (userList.find((user) => user.email === email)) {
+        //     alert('Email already exists');
+        //     return;
+        // }
         for (let i = 0; i < User.length; i++) {
             const element = User[i];
             if (email == element.email) {
                 alert('Email already exists');
                 return;
             }
-
+            // else{
+            //     handleSaveData();
+            //     console.log(dataToSave)
+            // }          
         }
+
+        // setUserList([...userList, { email, password }]);
 
         // Thêm tài khoản khi tài khoản không tồn tại
         User.push({ email, password });
-        navigation.navigate('Login');
+        // navigation.navigate('Login');
 
 
-
+        handleSaveData();
+        // console.log(dataToSave)
 
 
 
     };
 
-    const handleLoginPress = () => {
-        const user = UserData.find((user) => user.email === email && user.password === password);
-        if (user) {
-            alert('Login successful');
-            navigation.navigate('Movie Explorer');
-        } else {
-            alert('Email or password incorrect');
+    const handleSaveData = async () => {
+        try {
+            const dataToSave = {
+                email: email,
+                password: password,
+            };
+            const jsonData = JSON.stringify(dataToSave);
+            await AsyncStorage.setItem('data_key', jsonData);
+            console.log('Dữ liệu đã được lưu vào AsyncStorage:', dataToSave);
+            navigation.navigate('Login')
+        } catch (error) {
+            console.log('Lỗi khi lưu dữ liệu vào AsyncStorage:', error);
         }
     };
+
+    // const handleLoginPress = () => {
+    //     const user = UserData.find((user) => user.email === email && user.password === password);
+    //     if (user) {
+    //         alert('Login successful');
+    //         navigation.navigate('Movie Explorer');
+    //     } else {
+    //         alert('Email or password incorrect');
+    //     }
+    // };
 
     const validateEmail = (email) => {
         // Hàm kiểm tra định dạng email
