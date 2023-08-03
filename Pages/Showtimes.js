@@ -169,7 +169,7 @@ const Showtimes = () => {
                 newSelectedTimes['imdbID'] = imdbID;
                 newSelectedTimes['room'] = room;
                 newSelectedTimes['category'] = category;
-                console.log(newSelectedTimes)
+                // console.log(newSelectedTimes)
             }
             return newSelectedTimes;
         });

@@ -51,7 +51,7 @@ const MovieDetail = ({ route }) => {
   return (
     <>
       {
-        <ScrollView>
+        <View>
           {isLoadingMore && (
             <ActivityIndicator
               size="large"
@@ -92,7 +92,7 @@ const MovieDetail = ({ route }) => {
               </View>
             </View>
 
-            <ScrollView style={{height:height - 155}}>
+            <ScrollView style={{height:height - 154}}>
               <View style={styles.main}>
                 <View style={styles.imgView}>
                   <Image source={{ uri: data.Poster }} style={styles.img} />
@@ -133,7 +133,7 @@ const MovieDetail = ({ route }) => {
               <Text style={styles.textBtnOrdet}>Get Reservation</Text>
             </TouchableOpacity>
           </View>
-        </ScrollView>
+        </View>
       }
     </>
   );

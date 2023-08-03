@@ -26,8 +26,7 @@ const { width, height } = Dimensions.get('screen');
 
 
 
-const Login = () => {
-
+const Login = ({ route }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isEmailValid, setIsEmailValid] = useState(true);
@@ -104,7 +103,7 @@ const Login = () => {
 
         <View style={styles.container}>
 
-
+           
             <View style={styles.constainerForm}>
 
                 <Image
@@ -114,7 +113,6 @@ const Login = () => {
                 <Text style={styles.textLogo}>
                     Movie Login
                 </Text>
-
                 <View style={styles.inputView}>
                     <Text style={styles.textTitleInput}>Email</Text>
                     <TextInput
