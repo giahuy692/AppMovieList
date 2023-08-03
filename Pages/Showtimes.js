@@ -1,85 +1,12 @@
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Image, FlatList, Button } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { ScrollView } from 'react-native-gesture-handler';
 import RNDateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import Showtimesdb from '../MockData/Showtimesdb';
 
-
-let Showtimesdb = [
-    {
-        imdbID: 'tt0372784',
-        nameTheater: 'Cao Thắng',
-        date: '3/8/2023',
-        room: 'P.7',
-        lich: [
-            { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20'] }
-        ]
-    },
-    {
-        imdbID: 'tt0372784',
-        nameTheater: 'CCV',
-        date: '3/8/2023',
-        room: 'P.7',
-        lich: [
-            { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20'] }
-        ]
-    },
-    {
-        imdbID: 'tt0372784',
-        nameTheater: 'Lê Văn Việt',
-        date: '3/8/2023',
-        room: 'P.7',
-        lich: [
-            { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20'] }
-        ]
-    },
-    {
-        imdbID: 'tt0372784',
-        nameTheater: 'CCV',
-        date: '5/8/2023',
-        room: 'P.7',
-        lich: [
-            { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20'] }
-        ]
-    },
-    {
-        imdbID: 'tt0372784',
-        nameTheater: 'Lê Văn Việt',
-        date: '1/8/2023',
-        room: 'P.7',
-        lich: [
-            { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20'] }
-        ]
-    },
-    {
-        imdbID: 'tt0372784',
-        nameTheater: 'Cao Thắng',
-        date: '4/8/2023',
-        room: 'P.7',
-        lich: [
-            { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20'] }
-        ]
-    },
-    {
-        imdbID: 'tt0372784',
-        nameTheater: 'Lê Văn Việt',
-        date: '4/8/2023',
-        room: 'P.7',
-        lich: [
-            { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20'] }
-        ]
-    },
-    // ... (các thông tin rạp phim khác)
-];
 
 const { width, height } = Dimensions.get('screen');
 
@@ -147,6 +74,9 @@ const Showtimes = () => {
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
+    const route = useRoute();
+    const { imdbID } = route.params;
+    
     const navigation = useNavigation();
 
     const handleSelectTime = (imdbID, theater, date, time, room, category) => {
@@ -169,7 +99,8 @@ const Showtimes = () => {
                 newSelectedTimes['imdbID'] = imdbID;
                 newSelectedTimes['room'] = room;
                 newSelectedTimes['category'] = category;
-                // console.log(newSelectedTimes)
+                console.log(route.params)
+                console.log(newSelectedTimes)
             }
             return newSelectedTimes;
         });
@@ -177,7 +108,7 @@ const Showtimes = () => {
 
     const handleSelectButton = () => {
         if (Object.keys(selectedTimes).length > 0) {
-            const selectedShowtimes = Showtimesdb.filter((item) => item.date === selectedDate.toLocaleDateString('vi-VN'));
+            const selectedShowtimes = Showtimesdb.filter((item) => item.date === selectedDate.toLocaleDateString('vi-VN') && item.imdbID === imdbID.toString());
             navigation.navigate('TicketBooking', {
                 cinemaInfo: selectedTimes,
                 showtimes: selectedShowtimes
@@ -201,7 +132,7 @@ const Showtimes = () => {
         showMode('date');
     };
 
-    const showtimesForSelectedDate = Showtimesdb.filter((item) => item.date === selectedDate.toLocaleDateString('vi-VN'));
+    const showtimesForSelectedDate = Showtimesdb.filter((item) => item.imdbID === route.params.imdbID.toString() && item.date === selectedDate.toLocaleDateString('vi-VN'));
 
     return (
         <View style={styles.constainer}>
@@ -248,9 +179,13 @@ const Showtimes = () => {
                             />
                         ))
                     ) : (
-                        <Text style={styles.noShowtimesText}>
-                            There are no showtimes for this movie today.
-                        </Text>
+                        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                            <Image
+                                style={styles.logo}
+                                source={require('../assets/images/Logo.png')}
+                            />
+                            <Text style={{ textAlign: "center", color: "gray" }}>Oops! Looks like there are no showtimes scheduled for the selected date.</Text>
+                        </View>
                     )}
                 </View>
             </ScrollView>
@@ -405,6 +340,12 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
 
+    logo: {
+        height: 120,
+        width: 120,
+        marginBottom: 20
+    },
+
     //========================End style list clander========================
     menuFooter: {
         backgroundColor: 'rgb(246, 144, 115)',
@@ -437,6 +378,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#fff'
     },
+    
 
 })
 
