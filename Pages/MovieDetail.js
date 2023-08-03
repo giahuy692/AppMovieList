@@ -60,7 +60,7 @@ const MovieDetail = ({ route }) => {
             />
           )}
           <View style={{ position: "relative" }}>
-            <View style={{ alignItems:"center" }}>
+            <View style={{ alignItems: "center" }}>
               <View
                 style={{
                   flexDirection: "row",
@@ -92,7 +92,7 @@ const MovieDetail = ({ route }) => {
               </View>
             </View>
 
-            <ScrollView style={{height:height - 154}}>
+            <ScrollView style={{ height: height - 154 }}>
               <View style={styles.main}>
                 <View style={styles.imgView}>
                   <Image source={{ uri: data.Poster }} style={styles.img} />
@@ -111,13 +111,13 @@ const MovieDetail = ({ route }) => {
                   <Text style={styles.detail}>{data.Actors}</Text>
                 </View>
               </View>
-                <Text style={{marginTop:10,paddingTop:10,paddingHorizontal:10, fontSize:16, fontWeight:'700', color:"gray",borderTopWidth:0.5}}>Actor</Text>
-              <View style={[styles.ActorContainer,{flexWrap:"wrap", }]}>
+              <Text style={{ marginTop: 10, paddingTop: 10, paddingHorizontal: 10, fontSize: 16, fontWeight: '700', color: "gray", borderTopWidth: 0.5 }}>Actor</Text>
+              <View style={[styles.ActorContainer, { flexWrap: "wrap", }]}>
                 {arrActor.map((actor, index) => {
                   return (
-                    <View key={index} style={{flexWrap:"wrap", marginVertical:10}}>
+                    <View key={index} style={{ flexWrap: "wrap", marginVertical: 10 }}>
                       <Image style={styles.imgActor} source={actor.img} />
-                      <Text style={{textAlign:"center",paddingHorizontal:5,flexWrap:"wrap"}} numberOfLines={2}>{actor.name}</Text>
+                      <Text style={{ textAlign: "center", paddingHorizontal: 5, flexWrap: "wrap" }} numberOfLines={2}>{actor.name}</Text>
                     </View>
                   );
                 })}
@@ -125,10 +125,9 @@ const MovieDetail = ({ route }) => {
             </ScrollView>
             <TouchableOpacity
               style={styles.BtnOrder}
-              // onPress={() => navigate.navigate("Showtimes", {
-              //   imdbID: data['imdbID'],
-              // })}
-              onPress={()=>navigate.navigate("Showtimes")}
+              onPress={() => navigate.navigate("Showtimes", {
+                imdbID: data['imdbID'],
+              })}
             >
               <Text style={styles.textBtnOrdet}>Get Reservation</Text>
             </TouchableOpacity>
@@ -155,7 +154,7 @@ const styles = StyleSheet.create({
     width: (width * 70) / 100,
     // height: (height * 90) / 100,
     paddingRight: (width * 2.5) / 100,
-  
+
   },
   main: {
     flexDirection: "row",
@@ -203,12 +202,12 @@ const styles = StyleSheet.create({
     width: width,
     flexDirection: "row",
     marginVertical: 10,
-    justifyContent:"center",
+    justifyContent: "center",
   },
   imgActor: {
-    width: (width - 10*10) / 3,
+    width: (width - 10 * 10) / 3,
     height: 150,
     backgroundColor: "red",
-    marginHorizontal:10,
+    marginHorizontal: 10,
   },
 });

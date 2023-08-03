@@ -26,23 +26,42 @@ export default function Payment({ route }) {
   const handlePayment = async () => {
     if (phone !== "" && fullname !== "" && isOnSite) {
       const seatsString = data.seats.join(", ");
-      Alert.alert(
-        "Booking Confirmation:",
-        [
-          `Movie Name: ${data.movieName}`,
-          `Time: ${data.time}`,
-          `Date: ${data.date}`,
-          `Seats: ${seatsString}`,
-          // `Theater: ${data.room}`,
-          `Movie Category: ${data.category}`,
-          "\nThank you for booking with us!",
-        ].join("\n")
-      );
-      navigate.navigate("Movie Explorer");
-      console.log(data);
-    } else {
+      const qrValue = [
+        `Movie Name: ${data.movieName}`,
+        `Time: ${data.time}`,
+        `Date: ${data.date}`,
+        `Seats: ${seatsString}`,
+        `Theater: ${data.room}`,
+        `Movie Category: ${data.category}`,
+      ].join("\n");
+
       Alert.alert(
         "Notication",
+        qrValue,
+        [
+          {
+            text: "Go Movie Explorer",
+            onPress: () => {
+              Alert.alert(
+                "Payment successful",
+                "Thank you for booking with us!",
+                [
+                  {
+                    text: "OK",
+                    onPress: () => {
+                      // Xử lý khi người dùng nhấn OK
+                      navigate.navigate("Movie Explorer");
+                    },
+                  },
+                ],
+              );
+            },
+          },
+        ],
+      );
+    } else {
+      Alert.alert(
+        "Notification",
         "Please fill in all the required information and select a payment method."
       );
     }
@@ -102,7 +121,8 @@ export default function Payment({ route }) {
                 style={{
                   flexWrap: "wrap",
                   flexDirection: "row",
-                  columnGap: 10, justifyContent: 'center'
+                  columnGap: 10,
+                  justifyContent: "center",
                 }}
               >
                 {data.seats.map((v) => (
@@ -182,7 +202,14 @@ export default function Payment({ route }) {
       <TouchableOpacity
         style={[
           styles.button,
-          { backgroundColor: fullname == "" || isOnSite == false || phone == "" ? "gray" : "#F35120",opacity: fullname == "" || isOnSite == false || phone == "" ? 0.6 : 1.0 },
+          {
+            backgroundColor:
+              fullname == "" || isOnSite == false || phone == ""
+                ? "gray"
+                : "#F35120",
+            opacity:
+              fullname == "" || isOnSite == false || phone == "" ? 0.6 : 1.0,
+          },
         ]}
         onPress={handlePayment}
         disabled={fullname == "" || isOnSite == false || phone == ""}
@@ -255,12 +282,12 @@ const styles = StyleSheet.create({
     color: "gray",
     fontSize: 16,
     marginBottom: 5,
-    textAlign:"center"
+    textAlign: "center",
   },
   seats: {
     fontSize: 16,
     fontWeight: "bold",
-    textAlign:"center"
+    textAlign: "center",
   },
   cinemaWrapper: {
     borderTopWidth: 1,
@@ -275,7 +302,7 @@ const styles = StyleSheet.create({
   cinemaTitle: {
     color: "gray",
     marginBottom: 5,
-    fontSize:16
+    fontSize: 16,
   },
   cinemaName: {
     fontWeight: 700,
@@ -283,18 +310,17 @@ const styles = StyleSheet.create({
   room: {
     paddingVertical: 10,
     width: width / 2,
-    flex:1
-    
+    flex: 1,
   },
   roomTitle: {
     color: "gray",
     marginBottom: 5,
-    textAlign:"center",
-    fontSize:16
+    textAlign: "center",
+    fontSize: 16,
   },
   roomText: {
     fontWeight: 700,
-    textAlign:"center"
+    textAlign: "center",
   },
   label: {
     marginTop: 15,

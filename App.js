@@ -8,6 +8,10 @@ import Register from './Pages/Register'
 import Showtimes from './Pages/Showtimes'
 import TicketBookingScreen from './Pages/TicketBookingScreen'
 import Payment from './Pages/Payment'
+// import FileGet from './Pages/FileGet'
+// import FileSave from './Pages/FileSave'
+
+
 // import Datepicker from './Pages/datepicker'
 
 
@@ -24,6 +28,8 @@ const App = () => {
         <Stack.Screen name='Register' component= {Register} />
         <Stack.Screen name='TicketBooking' component= {TicketBookingScreen} />
         <Stack.Screen name='Payment' component= {Payment} />
+        {/* <Stack.Screen name='FileGet' component= {FileGet} />
+        <Stack.Screen name='FileSave' component= {FileSave} /> */}
         {/* <Stack.Screen name='Datepicker' component= {Datepicker}/> */}
       </Stack.Navigator>
     </NavigationContainer>
