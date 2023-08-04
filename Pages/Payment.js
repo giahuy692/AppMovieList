@@ -29,6 +29,9 @@ export default function Payment({ route }) {
       Alert.alert(
         "Booking Confirmation:",
         [
+          `Customer: ${fullname}`,
+          `Phone: ${phone}`,
+          `Payment: On-site`,
           `Movie Name: ${data.movieName}`,
           `Time: ${data.time}`,
           `Date: ${data.date}`,
@@ -39,7 +42,7 @@ export default function Payment({ route }) {
         ].join("\n")
       );
       navigate.navigate("Movie Explorer");
-      console.log(data);
+      // console.log(data);
     } else {
       Alert.alert(
         "Notication",
