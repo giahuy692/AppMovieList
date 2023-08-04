@@ -34,17 +34,26 @@ const TicketBookingScreen = ({ route }) => {
   };
 
   const SeatSelection = ({ selectedSeats, onSeatPress }) => {
-    const seats = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"];
+    const seats = ["A1", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "C1", "C2", "C3", "C4", "C5", "C6"];
     const seatPrices = {
-      A1: 70,
-      A2: 75,
-      A3: 82,
-      B1: 81,
-      B2: 83,
-      B3: 106,
-      C1: 54,
-      C2: 74,
-      C3: 79,
+      A1: 80,
+      A2: 80,
+      A3: 80,
+      A4: 80,
+      A5: 80,
+      A6: 80,
+      B1: 85,
+      B2: 85,
+      B3: 85,
+      B4: 85,
+      B5: 85,
+      B6: 85,
+      C1: 85,
+      C2: 85,
+      C3: 85,
+      C4: 85,
+      C5: 85,
+      C6: 85,
     };
 
     const handleSeatPress = (seat) => {
@@ -102,7 +111,10 @@ const TicketBookingScreen = ({ route }) => {
     cinema: cinema, 
     date: date, 
     time: time,
-    seats: selectedSeats
+    seats: selectedSeats,
+    category: route.params.cinemaInfo.category,
+    room: route.params.cinemaInfo.room,
+    totalPrice:priceTicket
   }
 
   const handleGoPayment = () => {

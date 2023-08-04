@@ -20,7 +20,6 @@ export default function Payment({ route }) {
   const [isOnSite, setOnSite] = useState(false);
   const [fullname, setFullname] = useState("");
   const [phone, setPhone] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
   const [isFullnameTouched, setIsFullnameTouched] = useState(false);
   const [isPhoneFormatValid, setIsPhoneFormatValid] = useState(false);
 
@@ -34,12 +33,13 @@ export default function Payment({ route }) {
           `Time: ${data.time}`,
           `Date: ${data.date}`,
           `Seats: ${seatsString}`,
-          `Theater: ${data.theater}`,
-          `Movie Format: ${data.movieFormat}`,
+          // `Theater: ${data.room}`,
+          `Movie Category: ${data.category}`,
           "\nThank you for booking with us!",
         ].join("\n")
       );
       navigate.navigate("Movie Explorer");
+      console.log(data);
     } else {
       Alert.alert(
         "Notication",
@@ -102,7 +102,7 @@ export default function Payment({ route }) {
                 style={{
                   flexWrap: "wrap",
                   flexDirection: "row",
-                  columnGap: 10,
+                  columnGap: 10, justifyContent: 'center'
                 }}
               >
                 {data.seats.map((v) => (
@@ -118,13 +118,17 @@ export default function Payment({ route }) {
             </View>
             <View style={styles.room}>
               <Text style={styles.roomTitle}>Movie Theater</Text>
-              <Text style={styles.roomText}>Screen 4</Text>
+              <Text style={styles.roomText}>{data.room}</Text>
             </View>
           </View>
           <View style={styles.cinemaWrapper}>
             <View style={styles.cinema}>
-              <Text style={styles.cinemaTitle}>Format</Text>
-              <Text style={styles.cinemaName}>2D Phụ đề</Text>
+              <Text style={styles.cinemaTitle}>Format movie</Text>
+              <Text style={styles.cinemaName}>{data.category}</Text>
+            </View>
+            <View style={styles.room}>
+              <Text style={styles.roomTitle}>Total price</Text>
+              <Text style={styles.roomText}>{data.totalPrice}</Text>
             </View>
           </View>
         </View>
@@ -178,7 +182,7 @@ export default function Payment({ route }) {
       <TouchableOpacity
         style={[
           styles.button,
-          { backgroundColor: isFormValid ? "#F35120" : "gray" },
+          { backgroundColor: fullname == "" || isOnSite == false || phone == "" ? "gray" : "#F35120",opacity: fullname == "" || isOnSite == false || phone == "" ? 0.6 : 1.0 },
         ]}
         onPress={handlePayment}
         disabled={fullname == "" || isOnSite == false || phone == ""}
@@ -224,7 +228,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   dateAndTime: {
-    width: width / 1.8,
+    width: width / 2,
     marginBottom: 15,
   },
   dateAndTimeTitle: {
@@ -251,10 +255,12 @@ const styles = StyleSheet.create({
     color: "gray",
     fontSize: 16,
     marginBottom: 5,
+    textAlign:"center"
   },
   seats: {
     fontSize: 16,
     fontWeight: "bold",
+    textAlign:"center"
   },
   cinemaWrapper: {
     borderTopWidth: 1,
@@ -269,6 +275,7 @@ const styles = StyleSheet.create({
   cinemaTitle: {
     color: "gray",
     marginBottom: 5,
+    fontSize:16
   },
   cinemaName: {
     fontWeight: 700,
@@ -276,13 +283,18 @@ const styles = StyleSheet.create({
   room: {
     paddingVertical: 10,
     width: width / 2,
+    flex:1
+    
   },
   roomTitle: {
     color: "gray",
     marginBottom: 5,
+    textAlign:"center",
+    fontSize:16
   },
   roomText: {
     fontWeight: 700,
+    textAlign:"center"
   },
   label: {
     marginTop: 15,
