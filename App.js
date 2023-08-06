@@ -20,11 +20,7 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer >
-<<<<<<< HEAD
       <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Movie Explorer'>
-=======
-      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Login'>
->>>>>>> tai.nt.54909
         <Stack.Screen name='Movie Explorer' component={MovieDisplay}/>
         <Stack.Screen name='Movie Detail' component= {MovieDetail } />
         <Stack.Screen name='Showtimes' component= {Showtimes} />
