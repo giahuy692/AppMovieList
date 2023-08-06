@@ -26,6 +26,7 @@ export default function Payment({ route }) {
   const handlePayment = async () => {
     if (phone !== "" && fullname !== "" && isOnSite) {
       const seatsString = data.seats.join(", ");
+<<<<<<< HEAD
       const qrValue = [
         `Movie Name: ${data.movieName}`,
         `Time: ${data.time}`,
@@ -35,6 +36,26 @@ export default function Payment({ route }) {
         `Movie Category: ${data.category}`,
       ].join("\n");
 
+=======
+      Alert.alert(
+        "Booking Confirmation:",
+        [
+          `Customer: ${fullname}`,
+          `Phone: ${phone}`,
+          `Payment: On-site`,
+          `Movie Name: ${data.movieName}`,
+          `Time: ${data.time}`,
+          `Date: ${data.date}`,
+          `Seats: ${seatsString}`,
+          // `Theater: ${data.room}`,
+          `Movie Category: ${data.category}`,
+          "\nThank you for booking with us!",
+        ].join("\n")
+      );
+      navigate.navigate("Movie Explorer");
+      // console.log(data);
+    } else {
+>>>>>>> tai.nt.54909
       Alert.alert(
         "Notication",
         qrValue,

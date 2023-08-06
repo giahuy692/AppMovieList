@@ -76,7 +76,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -86,7 +86,7 @@ export default Showtimesdb = [
         room: 'P.5',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -106,7 +106,7 @@ export default Showtimesdb = [
         room: 'P.7',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -116,7 +116,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -126,7 +126,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -136,7 +136,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -146,7 +146,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -156,7 +156,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -166,7 +166,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -176,7 +176,7 @@ export default Showtimesdb = [
         room: 'P.6',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -186,7 +186,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -196,7 +196,7 @@ export default Showtimesdb = [
         room: 'P.5',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -216,7 +216,7 @@ export default Showtimesdb = [
         room: 'P.7',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -226,7 +226,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -236,7 +236,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -246,7 +246,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -256,7 +256,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -276,7 +276,7 @@ export default Showtimesdb = [
         room: 'P.7',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -286,7 +286,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -296,7 +296,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -306,7 +306,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -316,7 +316,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -326,7 +326,7 @@ export default Showtimesdb = [
         room: 'P.5',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -346,7 +346,7 @@ export default Showtimesdb = [
         room: 'P.7',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -356,7 +356,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -366,7 +366,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -376,7 +376,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -386,7 +386,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -396,7 +396,7 @@ export default Showtimesdb = [
         room: 'P.5',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -416,7 +416,7 @@ export default Showtimesdb = [
         room: 'P.7',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -426,7 +426,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -436,7 +436,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -446,7 +446,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -456,7 +456,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -466,7 +466,7 @@ export default Showtimesdb = [
         room: 'P.5',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -486,7 +486,7 @@ export default Showtimesdb = [
         room: 'P.7',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -496,7 +496,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -506,7 +506,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -516,7 +516,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -526,7 +526,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -536,7 +536,7 @@ export default Showtimesdb = [
         room: 'P.5',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -556,7 +556,7 @@ export default Showtimesdb = [
         room: 'P.7',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -566,7 +566,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -576,7 +576,7 @@ export default Showtimesdb = [
         room: 'P.8',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     {
@@ -586,7 +586,7 @@ export default Showtimesdb = [
         room: 'P.2',
         lich: [
             { category: '2D PHỤ ĐỀ / SUB', time: ['17:20', '20:20', '22:20', '23:30'] },
-            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '23:30'] }
+            { category: '2D LỒNG TIẾNG / DUB', time: ['19:20', '00:30'] }
         ]
     },
     

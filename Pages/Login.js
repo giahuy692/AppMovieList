@@ -114,7 +114,7 @@ const Login = ({ route }) => {
                 setIsPasswordEmpty(false);
                 setIsPasswordCorrect(true);
                 navigation.navigate('Movie Explorer')
-                console.log("Login success")
+                // console.log("Login success")
             }
             
             else {

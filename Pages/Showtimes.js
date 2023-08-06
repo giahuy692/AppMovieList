@@ -99,8 +99,8 @@ const Showtimes = () => {
                 newSelectedTimes['imdbID'] = imdbID;
                 newSelectedTimes['room'] = room;
                 newSelectedTimes['category'] = category;
-                console.log(route.params)
-                console.log(newSelectedTimes)
+                // console.log(route.params)
+                // console.log(newSelectedTimes)
             }
             return newSelectedTimes;
         });
