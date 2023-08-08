@@ -85,7 +85,7 @@ const TicketBookingScreen = ({ route }) => {
       <View style={styles.seatSelection}>
         {seats.map((seat, index) => (
           <SeatItem
-            key={seat + index}
+            key={index}
             seat={seat}
             isSelected={selectedSeats.includes(seat)}
             onPress={handleSeatPress}
