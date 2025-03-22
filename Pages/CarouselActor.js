@@ -26,6 +26,8 @@ export default function CarouselActor({data}) {
           itemWidth={width*0.62}
           slideStyle={{display:'flex', alignItems:'center'}}
         />
+        ACB 
+        XYZ
       </View>
   );
 };
